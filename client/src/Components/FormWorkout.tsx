@@ -19,7 +19,7 @@ const FormWorkout = () => {
     const workout = { title, reps, load };
 
     try {
-      const response = await axios.post('http://localhost:4000/api/workouts', workout, {
+      const response = await axios.post(`${import.meta.env.VITE_APP_API_URL}/`, workout, {
         headers: {
           'Content-Type': 'application/json',
         },

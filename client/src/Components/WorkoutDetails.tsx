@@ -20,7 +20,7 @@ const WorkoutDetails: React.FC<WorkoutProps> = ({ work }) => {
 
   const handelDELworkout = async() =>{
     try {
-      const response = await axios.delete(`http://localhost:4000/api/workouts/${work._id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_APP_API_URL}/${work._id}`);
       
       if (response.status === 200) {
         dispatch({ type: 'DELETE_WORKOUT', payload: work });

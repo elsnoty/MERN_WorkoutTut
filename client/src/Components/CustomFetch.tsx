@@ -9,7 +9,7 @@ const useFetchWorkouts = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/workouts');
+        const response = await axios.get(`${import.meta.env.VITE_APP_API_URL}/`);
         dispatch({ type: 'SET_WORKOUTS', payload: response.data });
       } catch (error) {
         setError('Failed to fetch workouts');
