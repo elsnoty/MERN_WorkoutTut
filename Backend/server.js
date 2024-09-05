@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json()); // for req post and update
 
 // CORS configuration to allow requests from specific origins
-const allowedOrigins = ['http://localhost:5173', 'https://mern-workout-tut.vercel.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://mern-workout-tut-semm.vercel.app/'];
 
 app.use(
   cors({
