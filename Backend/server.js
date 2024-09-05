@@ -10,24 +10,26 @@ const app = express();
 // middleware
 app.use(express.json()); // for req post and update
 
-// CORS configuration to allow requests from specific origins
-const allowedOrigins = ['http://localhost:5173', 'https://mern-workout-tut-semm.vercel.app/'];
+// CORS configuration
+const allowedOrigins = [
+  'http://localhost:5173', // local development
+  'https://mern-workout-tut-semm.vercel.app', // deployed frontend
+  'https://mern-workout-tut.vercel.app' // deployed backend
+];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin, like mobile apps or curl requests
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-  })
-);
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow credentials
+}));
 
 // Handle preflight requests
 app.options('*', cors());
